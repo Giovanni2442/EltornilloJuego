@@ -1,0 +1,153 @@
+[gd_scene load_steps=22 format=3 uid="uid://ca51edxnqtj8j"]
+
+[ext_resource type="Texture2D" uid="uid://c1lumppek2x6y" path="res://coins/assets/tornillo/coin_tornillo-Sheet.png" id="1_kuwlp"]
+[ext_resource type="Script" uid="uid://cmplhi7qoteil" path="res://coins/coin_tornillo.gd" id="1_ou2bm"]
+[ext_resource type="Texture2D" uid="uid://bo40hknpq2n7i" path="res://coins/assets/especial/coin_special-Sheet.png" id="2_8vhq0"]
+[ext_resource type="Texture2D" uid="uid://82tv3f732bsy" path="res://coins/assets/rondana/coin_rondana-Sheet.png" id="3_py73d"]
+[ext_resource type="Texture2D" uid="uid://dd1obwbdkcrw4" path="res://coins/assets/tuerca/coin_tuerca-Sheet.png" id="5_fgsr3"]
+[ext_resource type="AudioStream" uid="uid://dvqphgvsathun" path="res://coins/sounds/retro-coin-1-236677.mp3" id="6_8vhq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j68a"]
+atlas = ExtResource("2_8vhq0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u7f7"]
+atlas = ExtResource("2_8vhq0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjh1h"]
+atlas = ExtResource("2_8vhq0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6iph"]
+atlas = ExtResource("2_8vhq0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd12w"]
+atlas = ExtResource("3_py73d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbp8y"]
+atlas = ExtResource("3_py73d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dxuq"]
+atlas = ExtResource("1_kuwlp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxfyf"]
+atlas = ExtResource("1_kuwlp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4xtm"]
+atlas = ExtResource("1_kuwlp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou2bm"]
+atlas = ExtResource("1_kuwlp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjiqf"]
+atlas = ExtResource("5_fgsr3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx38i"]
+atlas = ExtResource("5_fgsr3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2puev"]
+atlas = ExtResource("5_fgsr3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vhq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j68a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u7f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjh1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6iph")
+}],
+"loop": true,
+"name": &"especial",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd12w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbp8y")
+}],
+"loop": true,
+"name": &"rondana",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dxuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxfyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4xtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou2bm")
+}],
+"loop": true,
+"name": &"tornillo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjiqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx38i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2puev")
+}],
+"loop": true,
+"name": &"tuerca",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_py73d"]
+radius = 13.0
+height = 32.0
+
+[node name="coinTornillo" type="RigidBody2D"]
+editor_description = "Coin"
+collision_mask = 0
+mass = 0.015
+gravity_scale = 0.27
+script = ExtResource("1_ou2bm")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_8vhq0")
+animation = &"especial"
+frame_progress = 0.0548012
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_py73d")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.54972e-06, -8.34465e-07)
+scale = Vector2(2, 2.8)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8vhq0")
+volume_db = 6.481

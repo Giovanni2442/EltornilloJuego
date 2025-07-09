@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://digb3l1h7pxnc"]
+
+[ext_resource type="Script" uid="uid://qs6n21u5fh2u" path="res://enemy/scrap.gd" id="1_kw2xw"]
+[ext_resource type="Texture2D" uid="uid://dg1q80iwyt3i2" path="res://enemy/assets/Sprite-0011-Sheet-Sheet.png" id="1_txsar"]
+[ext_resource type="AudioStream" uid="uid://o2aiulodstj7" path="res://enemy/sounds/8-bit-explosion-10-340462.mp3" id="3_ptwei"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kw2xw"]
+radius = 7.33333
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptwei"]
+atlas = ExtResource("1_txsar")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjdr1"]
+atlas = ExtResource("1_txsar")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bndij"]
+atlas = ExtResource("1_txsar")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlv4a"]
+atlas = ExtResource("1_txsar")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vw3ee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptwei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjdr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bndij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlv4a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Scrap" type="RigidBody2D"]
+editor_description = "Scrap"
+texture_filter = 1
+mass = 0.123
+gravity_scale = 0.19
+can_sleep = false
+script = ExtResource("1_kw2xw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_kw2xw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_vw3ee")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ptwei")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ptwei")
