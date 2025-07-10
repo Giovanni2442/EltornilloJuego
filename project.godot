@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="proyecto_juego_tornillo"
-run/main_scene="uid://o3jyq867wyar"
+run/main_scene="uid://cu8ahwtf1pm7r"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

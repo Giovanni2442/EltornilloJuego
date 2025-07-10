@@ -36,7 +36,6 @@ func start(pos):
 	rotation = 0
 	show()
 	
-
 # CAPTURAR ELEMENTOS	
 func _on_body_entered(body):
 	emit_signal("catch",body)

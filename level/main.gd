@@ -1,12 +1,31 @@
 extends Node
 @export var coins_scene: PackedScene
 @export var scrap_scene: PackedScene
+@export var gameOver_scene: PackedScene
 
 @export var description: String = "coin"
 
 var score = 0
 var health = 0
 
+# EMPEZAR NUEVO JUEGO
+func new_game():
+	pass
+	
+# FINALIZAR JUEGO
+func game_over(health):
+	var gameOver = gameOver_scene.instantiate()
+	#print(health)
+	if health == 25:
+		$Player.hide()
+		$MusicLevel.stop()
+		$ScrapTimer.stop()	
+		$CoinTimer.stop()
+		gameOver.show_score(score)
+		add_child(gameOver)
+		$MusicDeadPlayer.play()
+		await $MusicDeadPlayer.finished
+		
 # COLICIONA CON OBJETO
 func catch_object(body):
 	var nameObject = body.descripcion
@@ -22,8 +41,9 @@ func catch_object(body):
 		$HUD.update_score(score)
 	else :
 		sound.play()		
-		health = 33.3
-		$HUD.damage(health)						
+		health = 25.5
+		$HUD.damage(health)	
+		game_over($HUD.value_health())					
 			
 	body.visible = false
 	await sound.finished
@@ -51,10 +71,11 @@ func _on_ScoreTimer_timeout():
 # FUNCIÓN PRINCIPAL DE PRUEBAS 
 func main():
 	$Player.start($StartPosition.position)
-	$AudioStreamPlayer2D.play()
+	$MusicLevel.play()
 	$ScrapTimer.start()	
 	$CoinTimer.start()
 		
 # FUNCIÓN MAIN DE PRUEBAS 
 func _ready():
+	print($HUD.value_health())
 	main()

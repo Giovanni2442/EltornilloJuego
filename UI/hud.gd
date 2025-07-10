@@ -5,5 +5,7 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 	
 func damage(damage):
-	$HealthPlayer.value -= damage
+	$HealthyBarPlayer.value -= damage
 	
+func value_health() -> int:
+	return $HealthyBarPlayer.value
