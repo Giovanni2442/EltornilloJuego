@@ -1,13 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu8ahwtf1pm7r"]
+[gd_scene load_steps=15 format=3 uid="uid://cu8ahwtf1pm7r"]
 
 [ext_resource type="Script" uid="uid://c7c1e1mle6ar6" path="res://level/main.gd" id="1_j70lj"]
 [ext_resource type="PackedScene" uid="uid://ca51edxnqtj8j" path="res://coins/coin_tornillo.tscn" id="2_ry1g7"]
 [ext_resource type="PackedScene" uid="uid://digb3l1h7pxnc" path="res://enemy/Scrap.tscn" id="3_tdkxd"]
 [ext_resource type="PackedScene" uid="uid://o3jyq867wyar" path="res://UI/Game_over.tscn" id="4_fh3di"]
 [ext_resource type="PackedScene" uid="uid://dknd7gubyg1nx" path="res://player/player.tscn" id="5_epufq"]
+[ext_resource type="Texture2D" uid="uid://nk34puiswkuv" path="res://UI/assets/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png" id="5_ry1g7"]
 [ext_resource type="PackedScene" uid="uid://hrvgga7e5t7e" path="res://UI/hud.tscn" id="6_ns06i"]
 [ext_resource type="AudioStream" uid="uid://bqmcpihejhoys" path="res://level/sounds/pixel-song-21-72593.mp3" id="7_npgwh"]
+[ext_resource type="Script" uid="uid://uc7fonejv0ag" path="res://level/scrap_timer.gd" id="7_tdkxd"]
 [ext_resource type="AudioStream" uid="uid://dprcki2ivuvc" path="res://level/sounds/dead-8bit-41400.mp3" id="8_b6row"]
+[ext_resource type="Script" uid="uid://csrlwjppuw6fy" path="res://level/pruebas.gd" id="8_fh3di"]
+[ext_resource type="Script" uid="uid://djcfgjciqtv8c" path="res://level/health_timer.gd" id="8_ns06i"]
+[ext_resource type="Script" uid="uid://lix38u0a8asi" path="res://level/coin_timer.gd" id="9_epufq"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
@@ -15,18 +20,20 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_j70lj"]
-
 [node name="Main" type="Node"]
 script = ExtResource("1_j70lj")
-coins_scene = ExtResource("2_ry1g7")
-scrap_scene = ExtResource("3_tdkxd")
 gameOver_scene = ExtResource("4_fh3di")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1048.0
+offset_bottom = 1536.0
+scale = Vector2(0.475, 0.475)
+texture = ExtResource("5_ry1g7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 512.0
 offset_bottom = 726.0
-color = Color(0.257806, 0.335248, 0.782472, 1)
+color = Color(1, 1, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_epufq")]
 position = Vector2(0, 4)
@@ -37,12 +44,21 @@ position = Vector2(261, 602)
 
 [node name="ScrapTimer" type="Timer" parent="."]
 wait_time = 0.395
+script = ExtResource("7_tdkxd")
+scrap_scene = ExtResource("3_tdkxd")
 
 [node name="HealthTimer" type="Timer" parent="."]
-wait_time = 0.299
+wait_time = 25.0
+script = ExtResource("8_ns06i")
+coins_scene = ExtResource("2_ry1g7")
+
+[node name="pruebas" type="Timer" parent="."]
+script = ExtResource("8_fh3di")
 
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 3.144
+script = ExtResource("9_epufq")
+coins_scene = ExtResource("2_ry1g7")
 
 [node name="CoinsPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_h2yge")
@@ -54,27 +70,20 @@ position = Vector2(32, 0)
 
 [node name="HUD" parent="." instance=ExtResource("6_ns06i")]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="MusicLevel" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_npgwh")
 
 [node name="MusicDeadPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_b6row")
-autoplay = true
 attenuation = 0.933033
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = 139.0
-offset_top = -64.0
-offset_right = 179.0
-offset_bottom = -24.0
-texture = SubResource("ViewportTexture_j70lj")
-
 [connection signal="catch" from="Player" to="." method="catch_object"]
+[connection signal="child_exiting_tree" from="ScrapTimer" to="ScrapTimer" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="ScrapTimer" to="." method="_on_ScrapTimer_timeout"]
+[connection signal="timeout" from="ScrapTimer" to="ScrapTimer" method="_on_ScrapTimer_timeout"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]
+[connection signal="timeout" from="HealthTimer" to="HealthTimer" method="_on_HealthTimer_timeout"]
+[connection signal="timeout" from="pruebas" to="pruebas" method="_on_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_Coin_timer_timeout"]
+[connection signal="timeout" from="CoinTimer" to="CoinTimer" method="_on_CoinTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

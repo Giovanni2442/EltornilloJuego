@@ -11,6 +11,10 @@ func damage(damage):
 #RETORNA LA SALUD DEL JUGADOR ACTUAL
 func value_health() -> int:
 	return $HealthyBarPlayer.value
+	
+func heal(heal):
+	$HealthyBarPlayer.value += heal
+		
 #RESETAR LA BARRA DE SALUD DEL JUGADOR
 func restart_health():
 	$HealthyBarPlayer.value = 100

@@ -8,6 +8,7 @@ func _ready():
 	#print(coin_types[1])
 	#random_coin()
 	pass
+	
 #generate a random coin element
 func random_coin():
 	var coin_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
@@ -16,6 +17,7 @@ func random_coin():
 	typeAnimation = coin_types.pick_random()	
 	$AnimatedSprite2D.animation = typeAnimation			#SELECCIÓNA EL NOMBRE EL SPRITE DE MANERA ALEATORIA
 	$AnimatedSprite2D.play()
+	
 #generate health coin 
 func coin_health():
 	var health = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
