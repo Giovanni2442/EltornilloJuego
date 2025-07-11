@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu8ahwtf1pm7r"]
+[gd_scene load_steps=11 format=3 uid="uid://cu8ahwtf1pm7r"]
 
 [ext_resource type="Script" uid="uid://c7c1e1mle6ar6" path="res://level/main.gd" id="1_j70lj"]
 [ext_resource type="PackedScene" uid="uid://ca51edxnqtj8j" path="res://coins/coin_tornillo.tscn" id="2_ry1g7"]
@@ -14,6 +14,8 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 448, 0)
 }
 point_count = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j70lj"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_j70lj")
@@ -34,7 +36,10 @@ scale = Vector2(4.5, 4.5)
 position = Vector2(261, 602)
 
 [node name="ScrapTimer" type="Timer" parent="."]
-wait_time = 0.323
+wait_time = 0.395
+
+[node name="HealthTimer" type="Timer" parent="."]
+wait_time = 0.299
 
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 3.144
@@ -61,7 +66,15 @@ stream = ExtResource("8_b6row")
 autoplay = true
 attenuation = 0.933033
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 139.0
+offset_top = -64.0
+offset_right = 179.0
+offset_bottom = -24.0
+texture = SubResource("ViewportTexture_j70lj")
+
 [connection signal="catch" from="Player" to="." method="catch_object"]
 [connection signal="timeout" from="ScrapTimer" to="." method="_on_ScrapTimer_timeout"]
+[connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_Coin_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

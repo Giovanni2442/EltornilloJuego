@@ -20,7 +20,6 @@ texture_progress = ExtResource("3_b1lf8")
 
 [node name="ScoreLabel" type="Label" parent="."]
 texture_filter = 1
-anchors_preset = -1
 offset_left = 21.0
 offset_top = 4.0
 offset_right = 484.0

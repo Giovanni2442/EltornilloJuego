@@ -48,7 +48,7 @@ animations = [{
 editor_description = "Scrap"
 texture_filter = 1
 mass = 0.123
-gravity_scale = 0.19
+gravity_scale = 0.275
 can_sleep = false
 script = ExtResource("1_kw2xw")
 

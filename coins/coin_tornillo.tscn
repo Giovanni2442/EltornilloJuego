@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://ca51edxnqtj8j"]
+[gd_scene load_steps=27 format=3 uid="uid://ca51edxnqtj8j"]
 
 [ext_resource type="Texture2D" uid="uid://c1lumppek2x6y" path="res://coins/assets/tornillo/coin_tornillo-Sheet.png" id="1_kuwlp"]
 [ext_resource type="Script" uid="uid://cmplhi7qoteil" path="res://coins/coin_tornillo.gd" id="1_ou2bm"]
 [ext_resource type="Texture2D" uid="uid://bo40hknpq2n7i" path="res://coins/assets/especial/coin_special-Sheet.png" id="2_8vhq0"]
+[ext_resource type="Texture2D" uid="uid://cfe0wifuk7wp2" path="res://coins/assets/health/coin_health.png" id="3_fgsr3"]
 [ext_resource type="Texture2D" uid="uid://82tv3f732bsy" path="res://coins/assets/rondana/coin_rondana-Sheet.png" id="3_py73d"]
 [ext_resource type="Texture2D" uid="uid://dd1obwbdkcrw4" path="res://coins/assets/tuerca/coin_tuerca-Sheet.png" id="5_fgsr3"]
 [ext_resource type="AudioStream" uid="uid://dvqphgvsathun" path="res://coins/sounds/retro-coin-1-236677.mp3" id="6_8vhq0"]
@@ -21,6 +22,22 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6iph"]
 atlas = ExtResource("2_8vhq0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh4td"]
+atlas = ExtResource("3_fgsr3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujt3y"]
+atlas = ExtResource("3_fgsr3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjljm"]
+atlas = ExtResource("3_fgsr3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_077wx"]
+atlas = ExtResource("3_fgsr3")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xd12w"]
@@ -80,6 +97,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_eh4td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujt3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjljm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_077wx")
+}],
+"loop": true,
+"name": &"health",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xd12w")
 }, {
 "duration": 1.0,
@@ -128,8 +162,8 @@ height = 32.0
 [node name="coinTornillo" type="RigidBody2D"]
 editor_description = "Coin"
 collision_mask = 0
-mass = 0.015
-gravity_scale = 0.27
+mass = 0.06
+gravity_scale = 0.375
 script = ExtResource("1_ou2bm")
 metadata/_edit_group_ = true
 
@@ -137,8 +171,9 @@ metadata/_edit_group_ = true
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8vhq0")
-animation = &"especial"
-frame_progress = 0.0548012
+animation = &"health"
+frame = 1
+frame_progress = 0.377987
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
