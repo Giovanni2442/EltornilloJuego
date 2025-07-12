@@ -5,8 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://o2aiulodstj7" path="res://enemy/sounds/8-bit-explosion-10-340462.mp3" id="3_ptwei"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kw2xw"]
-radius = 7.33333
-height = 20.0
+radius = 6.66667
+height = 18.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptwei"]
 atlas = ExtResource("1_txsar")

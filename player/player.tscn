@@ -93,7 +93,6 @@ editor_description = "coin"
 texture_filter = 1
 scale = Vector2(5, 5)
 script = ExtResource("1_yw30f")
-speed = 425
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

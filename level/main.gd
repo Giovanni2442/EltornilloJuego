@@ -2,17 +2,17 @@ extends Node
 
 @export var gameOver_scene: PackedScene
 @export var description: String = "coin"
+@export var Scrap_scene: PackedScene
  
-#var score = 0
-#var health = 0
-
 #Conecta las señales del Singleton al metodo el juego al ser emitidas
 func control():
 	Game.new_game.connect(new_game)
 
 # EMPEZAR NUEVO JUEGO
 func new_game():
+	var scrap = Scrap_scene.instantiate()
 	var gameOver = get_node_or_null("Screen_game_over")		# TOMAR EL NODO YA CREADO EN EL ARBOL DE ESCENAS
+	
 	if gameOver:						# VERIFICAR SI EXISTE EL NODO
 		gameOver.queue_free()			# ELIMINAR LA PANTALLA DE GAME OVER
 	else:
@@ -29,15 +29,15 @@ func game_over(health):
 	gameOver.name = "Screen_game_over"				#AGREGAR ETIQUETA LA INSERTARSE AL ARBOL DE ESCENAS
 	#print(health)
 	if health == 25:
-		print("Se ejecuta!")
+		#print("Se ejecuta!")
 		$Player.hide()
-		#$Player.queue_free()
-		$MusicLevel.stop()
+		#$Player.queue_free()		
 		$ScrapTimer.stop()	
+		$MusicLevel.stop()		
 		$CoinTimer.stop()
 		$HealthTimer.stop()
 		gameOver.show_score(Game.score)
-		add_child(gameOver)
+		add_child(gameOver)		
 		$MusicDeadPlayer.play()
 		await $MusicDeadPlayer.finished
 		
@@ -65,7 +65,6 @@ func catch_object(body):
 	body.visible = false
 	await sound.finished
 	body.queue_free()
-	
 		
 # FUNCIÓN PRINCIPAL DE PRUEBAS 
 func main():
@@ -79,4 +78,5 @@ func main():
 		
 # FUNCIÓN MAIN DE PRUEBAS 
 func _ready():
+	#$MusicLevel.play()
 	main()

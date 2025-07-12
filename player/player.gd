@@ -1,7 +1,7 @@
 extends Area2D
 
 signal catch(body)			# Atrapar objeto
-@export var speed = 400
+#@export var speed = 425
 var screen_size									#TAMAÑO DE LA PANTALLA DEL JUEGO
 
 # --- MOVILIDAD DEL JUGADOR --- 
@@ -14,7 +14,7 @@ func movPlayer(delta):
 	
 	# ACTIVAR ANIMACIÓN
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = velocity.normalized() * Game.speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.play()

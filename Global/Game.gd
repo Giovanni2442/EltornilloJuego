@@ -3,6 +3,9 @@ extends Node
 signal new_game
 signal game_over
 
+#---PLAYER---
+var speed := 425
+
 #---ITEMS---#
 var score := 0
 var damage := 0
