@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnukmxnfm8lsb"]
+
+[ext_resource type="Texture2D" uid="uid://dqxlxitw4bjfx" path="res://level/assets/Sprite-0002-Sheet.png" id="1_27yls"]
+[ext_resource type="Texture2D" uid="uid://b5rc6kamo76um" path="res://level/assets/ChatGPT Image Jul 12, 2025, 10_48_09 AM.png" id="1_uqs8y"]
+[ext_resource type="Texture2D" uid="uid://5jlyj0781403" path="res://level/assets/Player_menu.png" id="2_2sxo6"]
+[ext_resource type="AudioStream" uid="uid://6swh67ftmyk" path="res://level/sounds/main_menu/slow-2021-10-19_-_Funny_Bit_-_www.FesliyanStudios.com.mp3" id="4_d0b4o"]
+[ext_resource type="Texture2D" uid="uid://dycuxd5mafqf6" path="res://level/assets/Button_play_game.png" id="5_2sxo6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yarx"]
+atlas = ExtResource("1_27yls")
+region = Rect2(0, 0, 120, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu5tg"]
+atlas = ExtResource("1_27yls")
+region = Rect2(0, 64, 120, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uqs8y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yarx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu5tg")
+}],
+"loop": true,
+"name": &"logo",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0b4o"]
+atlas = ExtResource("5_2sxo6")
+region = Rect2(0, 4, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg3bj"]
+atlas = ExtResource("5_2sxo6")
+region = Rect2(0, 36, 32, 24)
+
+[node name="Main" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1667.0
+offset_bottom = 2433.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_uqs8y")
+
+[node name="PlayerMenu" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(259, 358)
+scale = Vector2(4.57813, 3.96875)
+texture = ExtResource("2_2sxo6")
+
+[node name="LogoSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(251, 261)
+scale = Vector2(3.49167, 4.35937)
+sprite_frames = SubResource("SpriteFrames_uqs8y")
+animation = &"logo"
+frame_progress = 0.0625778
+metadata/_edit_group_ = true
+
+[node name="MainAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d0b4o")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.75
+anchor_top = 0.799
+anchor_right = 0.75
+anchor_bottom = 0.799
+offset_left = -219.0
+offset_top = -100.27
+offset_right = 1.99997
+offset_bottom = 15.73
+
+[node name="TextureButton" type="TextureButton" parent="Menu"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 47.0
+offset_top = 21.0
+offset_right = 148.0
+offset_bottom = 61.0
+texture_normal = SubResource("AtlasTexture_d0b4o")
+texture_pressed = SubResource("AtlasTexture_fg3bj")

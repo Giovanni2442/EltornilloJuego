@@ -26,9 +26,9 @@ gameOver_scene = ExtResource("4_fh3di")
 Scrap_scene = ExtResource("3_tdkxd")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1053.0
-offset_bottom = 1537.0
-scale = Vector2(0.475, 0.475)
+offset_right = 1074.0
+offset_bottom = 1547.0
+scale = Vector2(0.47, 0.47)
 texture = ExtResource("5_ry1g7")
 
 [node name="ColorRect" type="ColorRect" parent="."]

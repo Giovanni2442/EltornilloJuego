@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://o3jyq867wyar"]
+[gd_scene load_steps=8 format=4 uid="uid://o3jyq867wyar"]
 
 [ext_resource type="Texture2D" uid="uid://bg55f111ai3jv" path="res://UI/tiles/LKVe2a.jpg" id="1_leq7i"]
 [ext_resource type="Script" uid="uid://fikeow01tujp" path="res://UI/game_over.gd" id="2_cl405"]
@@ -44,6 +44,8 @@ use_texture_padding = false
 [sub_resource type="TileSet" id="TileSet_unhg1"]
 sources/1 = SubResource("TileSetAtlasSource_nkuw6")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_cl405"]
+
 [node name="TileMapLayer" type="TileMapLayer"]
 z_index = 1
 position = Vector2(-26, 0)
@@ -66,6 +68,7 @@ theme_override_colors/font_hover_color = Color(0.861329, 0.421743, 0.544102, 1)
 theme_override_fonts/font = ExtResource("2_nkuw6")
 theme_override_font_sizes/font_size = 28
 text = "CONTINUAR"
+icon = SubResource("ViewportTexture_cl405")
 
 [node name="MessageLabel" type="Label" parent="."]
 offset_left = 158.0
