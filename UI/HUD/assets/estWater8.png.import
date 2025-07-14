@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw6lcp2ue0ptq"
-path="res://.godot/imported/health_bar.png-c1279edd9f4e2ce95ef456d00b6c0942.ctex"
+uid="uid://gtsacafi5qy4"
+path="res://.godot/imported/estWater8.png-287b90b5bb67f29c70c710e9834fa770.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/health_bar.png"
-dest_files=["res://.godot/imported/health_bar.png-c1279edd9f4e2ce95ef456d00b6c0942.ctex"]
+source_file="res://UI/HUD/assets/estWater8.png"
+dest_files=["res://.godot/imported/estWater8.png-287b90b5bb67f29c70c710e9834fa770.ctex"]
 
 [params]
 

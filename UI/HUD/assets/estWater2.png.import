@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://imy2kcngk8sl"
-path="res://.godot/imported/atlasTile.png-66713b6a864ac4210af945b35b2a0378.ctex"
+uid="uid://kocvyyilhwep"
+path="res://.godot/imported/estWater2.png-90ffef9c75370c0bee637dc32a5c5423.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/tiles/atlasTile.png"
-dest_files=["res://.godot/imported/atlasTile.png-66713b6a864ac4210af945b35b2a0378.ctex"]
+source_file="res://UI/HUD/assets/estWater2.png"
+dest_files=["res://.godot/imported/estWater2.png-90ffef9c75370c0bee637dc32a5c5423.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gtsacafi5qy4"
-path="res://.godot/imported/estWater8.png-844f8f0ec883d42daa31c408544b70e0.ctex"
+uid="uid://bg55f111ai3jv"
+path="res://.godot/imported/LKVe2a.jpg-277b618059c8a76f9593e174bbfa18bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/estWater8.png"
-dest_files=["res://.godot/imported/estWater8.png-844f8f0ec883d42daa31c408544b70e0.ctex"]
+source_file="res://UI/Game_over/tiles/LKVe2a.jpg"
+dest_files=["res://.godot/imported/LKVe2a.jpg-277b618059c8a76f9593e174bbfa18bf.ctex"]
 
 [params]
 

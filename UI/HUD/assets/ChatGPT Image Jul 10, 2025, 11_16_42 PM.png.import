@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcnchtmmoesij"
-path="res://.godot/imported/estWater7.png-3dd9f67c00dd7819b34c82dd52b3d8cc.ctex"
+uid="uid://nk34puiswkuv"
+path="res://.godot/imported/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png-f5039c82c0262c086b3e8b39bf41bc28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/estWater7.png"
-dest_files=["res://.godot/imported/estWater7.png-3dd9f67c00dd7819b34c82dd52b3d8cc.ctex"]
+source_file="res://UI/HUD/assets/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png"
+dest_files=["res://.godot/imported/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png-f5039c82c0262c086b3e8b39bf41bc28.ctex"]
 
 [params]
 

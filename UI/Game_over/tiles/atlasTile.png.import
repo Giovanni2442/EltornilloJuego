@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nk34puiswkuv"
-path="res://.godot/imported/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png-fb7e7ed9ef1b662fd8b06d9dd0faafb8.ctex"
+uid="uid://imy2kcngk8sl"
+path="res://.godot/imported/atlasTile.png-e9f232c33fda50df58a666117d6c07da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png"
-dest_files=["res://.godot/imported/ChatGPT Image Jul 10, 2025, 11_16_42 PM.png-fb7e7ed9ef1b662fd8b06d9dd0faafb8.ctex"]
+source_file="res://UI/Game_over/tiles/atlasTile.png"
+dest_files=["res://.godot/imported/atlasTile.png-e9f232c33fda50df58a666117d6c07da.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://hrvgga7e5t7e"]
 
-[ext_resource type="Script" uid="uid://dvw46kkgsxi8v" path="res://UI/hud.gd" id="1_ne75i"]
-[ext_resource type="Texture2D" uid="uid://kocvyyilhwep" path="res://UI/assets/estWater2.png" id="2_2o5uh"]
-[ext_resource type="Texture2D" uid="uid://dcnchtmmoesij" path="res://UI/assets/estWater7.png" id="3_b1lf8"]
+[ext_resource type="Script" uid="uid://dvw46kkgsxi8v" path="res://UI/HUD/hud.gd" id="1_ne75i"]
+[ext_resource type="Texture2D" uid="uid://kocvyyilhwep" path="res://UI/HUD/assets/estWater2.png" id="2_2o5uh"]
+[ext_resource type="Texture2D" uid="uid://dcnchtmmoesij" path="res://UI/HUD/assets/estWater7.png" id="3_b1lf8"]
 [ext_resource type="FontFile" uid="uid://d24lcfiwk4mfc" path="res://UI/fonts/Minecraft.ttf" id="4_b1lf8"]
 
 [node name="HUD" type="CanvasLayer"]
