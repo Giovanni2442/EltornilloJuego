@@ -1,5 +1,6 @@
 extends Node
 # --- SIGNALS AND GLOBAL ELEMNETS OF GAME --- #
+signal play_game
 signal new_game
 signal game_over
 

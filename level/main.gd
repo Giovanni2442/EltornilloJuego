@@ -6,8 +6,9 @@ extends Node
  
 #Conecta las señales del Singleton al metodo el juego al ser emitidas
 func control():
-	Game.new_game.connect(new_game)
-
+	if not Game.new_game.is_connected(new_game):
+		Game.new_game.connect(new_game)	#CONECTA CON LA FUNCIÓN 'new_Game()' SI LA SEÑAL FUE EMITIDA
+	
 # EMPEZAR NUEVO JUEGO
 func new_game():
 	var scrap = Scrap_scene.instantiate()
@@ -19,8 +20,7 @@ func new_game():
 		print("No se pudo eliminar")
 	Game.score = 0
 	$HUD.update_score(0)		#RESETEAR EL PUNTAJE
-	$HUD.restart_health()		#RESETEAR LA SALUD
-	add_child($Player)
+	$HUD.restart_health()		#RESETEAR LA SALUD	
 	main()
 
 # FINALIZAR JUEGO
@@ -28,7 +28,7 @@ func game_over(health):
 	var gameOver = gameOver_scene.instantiate()		#ISTANCIA A LA PANTALLA GAME OVER
 	gameOver.name = "Screen_game_over"				#AGREGAR ETIQUETA LA INSERTARSE AL ARBOL DE ESCENAS
 	#print(health)
-	if health == 25:
+	if health == 17:
 		#print("Se ejecuta!")
 		$Player.hide()
 		#$Player.queue_free()		
@@ -36,7 +36,7 @@ func game_over(health):
 		$MusicLevel.stop()		
 		$CoinTimer.stop()
 		$HealthTimer.stop()
-		gameOver.show_score(Game.score)
+		#gameOver.show_score(Game.score)
 		add_child(gameOver)		
 		$MusicDeadPlayer.play()
 		await $MusicDeadPlayer.finished
@@ -51,14 +51,17 @@ func catch_object(body):
 		if sprite.animation == "especial":
 			Game.score += 10	
 		elif sprite.animation == "health" :
-			$HUD.heal(25)		
+			if $HUD.value_health() == 41:				
+				Game.score += 5
+			else : 
+				$HUD.heal(8)					
 		else : 
 			Game.score += 1
 		sound.play()
 		$HUD.update_score(Game.score)
 	else :
 		sound.play()		
-		Game.damage = 25.5
+		Game.damage = 8
 		$HUD.damage(Game.damage)	
 		game_over($HUD.value_health())					
 			
@@ -69,6 +72,11 @@ func catch_object(body):
 # FUNCIÓN PRINCIPAL DE PRUEBAS 
 func main():
 	control()
+	if $Player.is_inside_tree():
+		print(true)
+		
+	else:
+		print(false)
 	$Player.start($StartPosition.position)
 	#$HUD.damage(Game.damage)	
 	$MusicLevel.play()

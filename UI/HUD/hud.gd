@@ -17,4 +17,4 @@ func heal(heal):
 		
 #RESETAR LA BARRA DE SALUD DEL JUGADOR
 func restart_health():
-	$HealthyBarPlayer.value = 100
+	$HealthyBarPlayer.value = 41

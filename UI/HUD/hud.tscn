@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://hrvgga7e5t7e"]
 
 [ext_resource type="Script" uid="uid://dvw46kkgsxi8v" path="res://UI/HUD/hud.gd" id="1_ne75i"]
-[ext_resource type="Texture2D" uid="uid://kocvyyilhwep" path="res://UI/HUD/assets/estWater2.png" id="2_2o5uh"]
-[ext_resource type="Texture2D" uid="uid://dcnchtmmoesij" path="res://UI/HUD/assets/estWater7.png" id="3_b1lf8"]
+[ext_resource type="Texture2D" uid="uid://d2e7qiglog4qi" path="res://UI/HUD/assets/progress_bar.png" id="2_qdh7y"]
+[ext_resource type="Texture2D" uid="uid://sbpn4e3ccehv" path="res://UI/HUD/assets/progress2.png" id="3_radol"]
 [ext_resource type="FontFile" uid="uid://d24lcfiwk4mfc" path="res://UI/fonts/Minecraft.ttf" id="4_b1lf8"]
 
 [node name="HUD" type="CanvasLayer"]
@@ -10,13 +10,17 @@ script = ExtResource("1_ne75i")
 
 [node name="HealthyBarPlayer" type="TextureProgressBar" parent="."]
 texture_filter = 1
-offset_left = 414.0
-offset_top = 67.0
-offset_right = 494.0
-offset_bottom = 99.0
-value = 100.0
-texture_under = ExtResource("2_2o5uh")
-texture_progress = ExtResource("3_b1lf8")
+offset_left = 406.0
+offset_top = 71.0
+offset_right = 526.0
+offset_bottom = 251.0
+max_value = 50.0
+value = 41.0
+fill_mode = 3
+texture_under = ExtResource("2_qdh7y")
+texture_progress = ExtResource("3_radol")
+tint_over = Color(1, 1, 1, 0.694118)
+tint_progress = Color(1, 1, 1, 0.560784)
 
 [node name="ScoreLabel" type="Label" parent="."]
 texture_filter = 1
