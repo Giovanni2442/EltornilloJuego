@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://tmwenhebsugi"]
+
+[ext_resource type="Script" uid="uid://d62cadux5b64" path="res://pruebas/button.gd" id="1_2w0j5"]
+
+[node name="Pruebas2" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 180.0
+offset_top = 234.0
+offset_right = 308.0
+offset_bottom = 284.0
+text = "Click me!"
+script = ExtResource("1_2w0j5")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

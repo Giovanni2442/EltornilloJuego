@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cu8ahwtf1pm7r"]
+[gd_scene load_steps=19 format=3 uid="uid://cu8ahwtf1pm7r"]
 
 [ext_resource type="Script" uid="uid://c7c1e1mle6ar6" path="res://level/main.gd" id="1_j70lj"]
 [ext_resource type="PackedScene" uid="uid://ca51edxnqtj8j" path="res://coins/coin_tornillo.tscn" id="2_ry1g7"]
@@ -13,12 +13,24 @@
 [ext_resource type="Script" uid="uid://csrlwjppuw6fy" path="res://level/pruebas.gd" id="8_fh3di"]
 [ext_resource type="Script" uid="uid://djcfgjciqtv8c" path="res://level/health_timer.gd" id="8_ns06i"]
 [ext_resource type="Script" uid="uid://lix38u0a8asi" path="res://level/coin_timer.gd" id="9_epufq"]
+[ext_resource type="Texture2D" uid="uid://gcydkvhxay4r" path="res://main/assets/button_start.png" id="14_npgwh"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 448, 0)
 }
 point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6row"]
+atlas = ExtResource("14_npgwh")
+region = Rect2(9, 24, 103, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7a4y"]
+atlas = ExtResource("14_npgwh")
+region = Rect2(8, 24, 105, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_177d4"]
+atlas = SubResource("AtlasTexture_i7a4y")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_j70lj")
@@ -32,12 +44,12 @@ scale = Vector2(0.47, 0.47)
 texture = ExtResource("5_ry1g7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 500.0
+offset_right = 504.0
 offset_bottom = 731.0
 color = Color(1, 1, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_epufq")]
-position = Vector2(0, 4)
+position = Vector2(179, 21)
 scale = Vector2(4.5, 4.5)
 
 [node name="StartPosition" type="Marker2D" parent="."]
@@ -77,6 +89,22 @@ stream = ExtResource("7_npgwh")
 [node name="MusicDeadPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_b6row")
 attenuation = 0.933033
+
+[node name="ButonsTactil" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Btn_Izq" type="TouchScreenButton" parent="ButonsTactil"]
+position = Vector2(13, 637)
+scale = Vector2(1.06796, 0.658228)
+texture_normal = SubResource("AtlasTexture_b6row")
+action = "walk_left"
+
+[node name="Btn_Drch" type="TouchScreenButton" parent="ButonsTactil"]
+position = Vector2(364, 635)
+scale = Vector2(1.20952, 0.653846)
+texture_normal = SubResource("AtlasTexture_177d4")
+texture_pressed = SubResource("AtlasTexture_i7a4y")
+action = "walk_right"
 
 [connection signal="catch" from="Player" to="." method="catch_object"]
 [connection signal="child_exiting_tree" from="ScrapTimer" to="ScrapTimer" method="_on_child_exiting_tree"]

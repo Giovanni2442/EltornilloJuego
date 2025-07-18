@@ -10,7 +10,7 @@ func _on_CoinTimer_timeout() -> void:
 		wait_time = 3.20
 	if Game.score >= 30 and Game.score <= 45:
 		wait_time = 2.604
-	if  Game.score >= 45 and Game.score <= 100:	
+	if  Game.score >= 45:	
 		wait_time = 2.258
 		
 	coin.random_coin()

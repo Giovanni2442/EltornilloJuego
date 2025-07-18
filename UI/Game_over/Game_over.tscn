@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://o3jyq867wyar"]
+[gd_scene load_steps=14 format=4 uid="uid://o3jyq867wyar"]
 
 [ext_resource type="Texture2D" uid="uid://bg55f111ai3jv" path="res://UI/Game_over/tiles/LKVe2a.jpg" id="1_leq7i"]
 [ext_resource type="Script" uid="uid://fikeow01tujp" path="res://UI/Game_over/game_over.gd" id="2_cl405"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dnw5qywim3lo5" path="res://UI/Game_over/score.gd" id="6_1telg"]
 [ext_resource type="Texture2D" uid="uid://c526x4kwrrtnq" path="res://main/assets/button_esqueleto-Sheet.png" id="6_ay67i"]
 [ext_resource type="Script" uid="uid://xmyy1ukfebhj" path="res://UI/Game_over/texture_button.gd" id="6_csxi0"]
+[ext_resource type="Script" uid="uid://dy8mf8nrysfue" path="res://UI/Game_over/texture_button_2.gd" id="8_ay67i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nkuw6"]
 texture = ExtResource("1_leq7i")
@@ -54,6 +55,10 @@ region = Rect2(0, 0, 100, 0)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8c4tm"]
 atlas = ExtResource("6_ay67i")
 region = Rect2(100, 1, 99, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay67i"]
+atlas = ExtResource("6_ay67i")
+region = Rect2(0, 0, 101, 0)
 
 [node name="TileMapLayer" type="TileMapLayer"]
 z_index = 1
@@ -113,10 +118,10 @@ script = ExtResource("6_1telg")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
-offset_left = 230.0
-offset_top = 351.0
-offset_right = 331.0
-offset_bottom = 391.0
+offset_left = 175.0
+offset_top = 344.0
+offset_right = 276.0
+offset_bottom = 384.0
 texture_normal = SubResource("AtlasTexture_bgp0o")
 texture_pressed = SubResource("AtlasTexture_8c4tm")
 script = ExtResource("6_csxi0")
@@ -127,8 +132,28 @@ layout_mode = 0
 offset_left = 13.0
 offset_top = 10.0
 offset_right = 89.0
-offset_bottom = 33.0
+offset_bottom = 26.0
 theme_override_fonts/font = ExtResource("3_unhg1")
 text = "continuar"
 
+[node name="TextureButton2" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 288.0
+offset_top = 343.0
+offset_right = 389.0
+offset_bottom = 383.0
+texture_normal = SubResource("AtlasTexture_ay67i")
+script = ExtResource("8_ay67i")
+
+[node name="Label" type="Label" parent="TextureButton2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 34.0
+offset_top = 11.0
+offset_right = 68.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("3_unhg1")
+text = "Salir"
+
 [connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="TextureButton2" to="TextureButton2" method="_on_pressed"]

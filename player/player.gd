@@ -11,7 +11,7 @@ func movPlayer(delta):
 		velocity.x -= 1
 	if Input.is_action_pressed("walk_right"):
 		velocity.x += 1
-	
+		
 	# ACTIVAR ANIMACIÓN
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * Game.speed

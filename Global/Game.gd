@@ -3,6 +3,7 @@ extends Node
 signal play_game
 signal new_game
 signal game_over
+signal main_menu
 
 #---PLAYER---
 var speed := 425

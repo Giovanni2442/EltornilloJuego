@@ -26,7 +26,7 @@ func _on_ScrapTimer_timeout():
 		scrap.gravity_scale = 0.538
 		Game.speed = 550			#VELOCIDAD DEL JUGADOR
 	
-	if Game.score >= 45 and Game.score <= 100:		
+	if Game.score >= 45:		
 		wait_time = 0.235
 		start()
 		scrap.gravity_scale = 0.645
