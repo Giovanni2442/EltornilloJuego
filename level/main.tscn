@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cu8ahwtf1pm7r"]
+[gd_scene load_steps=20 format=3 uid="uid://cu8ahwtf1pm7r"]
 
 [ext_resource type="Script" uid="uid://c7c1e1mle6ar6" path="res://level/main.gd" id="1_j70lj"]
 [ext_resource type="PackedScene" uid="uid://ca51edxnqtj8j" path="res://coins/coin_tornillo.tscn" id="2_ry1g7"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://csrlwjppuw6fy" path="res://level/pruebas.gd" id="8_fh3di"]
 [ext_resource type="Script" uid="uid://djcfgjciqtv8c" path="res://level/health_timer.gd" id="8_ns06i"]
 [ext_resource type="Script" uid="uid://lix38u0a8asi" path="res://level/coin_timer.gd" id="9_epufq"]
+[ext_resource type="Script" uid="uid://k2uvlp8mupfv" path="res://level/music_level.gd" id="13_b6row"]
 [ext_resource type="Texture2D" uid="uid://gcydkvhxay4r" path="res://main/assets/button_start.png" id="14_npgwh"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
@@ -49,7 +50,7 @@ offset_bottom = 731.0
 color = Color(1, 1, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_epufq")]
-position = Vector2(179, 21)
+position = Vector2(1, 4)
 scale = Vector2(4.5, 4.5)
 
 [node name="StartPosition" type="Marker2D" parent="."]
@@ -85,6 +86,7 @@ position = Vector2(32, 0)
 
 [node name="MusicLevel" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_npgwh")
+script = ExtResource("13_b6row")
 
 [node name="MusicDeadPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_b6row")

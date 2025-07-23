@@ -11,6 +11,8 @@ var speed := 425
 #---ITEMS---#
 var score := 0
 var damage := 0
+var record := 0
+var type_player := ""
 
 #---DROP VELODITY TO ITEMS---·
 var drop_velodity_scrap := 0

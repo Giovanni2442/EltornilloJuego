@@ -11,7 +11,7 @@ func control():
 	
 # EMPEZAR NUEVO JUEGO
 func new_game():
-	var scrap = Scrap_scene.instantiate()
+	#var scrap = Scrap_scene.instantiate()
 	var gameOver = get_node_or_null("Screen_game_over")		# TOMAR EL NODO YA CREADO EN EL ARBOL DE ESCENAS
 	
 	if gameOver:						# VERIFICAR SI EXISTE EL NODO
@@ -21,12 +21,13 @@ func new_game():
 	Game.score = 0
 	$HUD.update_score(0)		#RESETEAR EL PUNTAJE
 	$HUD.restart_health()		#RESETEAR LA SALUD	
+	$HUD.updateScoreRecord()	#ACTUALIZA EL RECORD GENERADO
 	main()
 
 # FINALIZAR JUEGO
 func game_over(health):
 	var gameOver = gameOver_scene.instantiate()		#ISTANCIA A LA PANTALLA GAME OVER
-	gameOver.name = "Screen_game_over"				#AGREGAR ETIQUETA LA INSERTARSE AL ARBOL DE ESCENAS
+	gameOver.name = "Screen_game_over"				#AGREGAR ETIQUETA AL INSERTARSE AL ARBOL DE ESCENAS
 	#print(health)
 	if health == 17:
 		#print("Se ejecuta!")
@@ -34,9 +35,12 @@ func game_over(health):
 		#$Player.queue_free()		
 		$ScrapTimer.stop()	
 		$MusicLevel.stop()		
-		$CoinTimer.stop()
+		$CoinTimer.stop()			
 		$HealthTimer.stop()
-		#gameOver.show_score(Game.score)
+		#gameOver.record_update(Game.score)
+		gameOver.record_update(Game.score)
+		#gameOver.record(Game.score)				# !!FUNCIÓN DE PRUEBAS!!
+		#$HUD.record_update(Game.score)			# ALMACENA LA NUEVA PUNTUACIÓN
 		add_child(gameOver)		
 		$MusicDeadPlayer.play()
 		await $MusicDeadPlayer.finished
@@ -72,9 +76,8 @@ func catch_object(body):
 # FUNCIÓN PRINCIPAL DE PRUEBAS 
 func main():
 	control()
-	if $Player.is_inside_tree():
-		print(true)
-		
+	if $Player.is_inside_tree():		# VERIFICA SI EL NODO PLAYER ESTA DENTRO DEL ARBOL DE ESCENAS
+		print(true)		
 	else:
 		print(false)
 	$Player.start($StartPosition.position)

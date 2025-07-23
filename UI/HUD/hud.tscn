@@ -35,12 +35,25 @@ texture_progress = ExtResource("3_radol")
 tint_over = Color(1, 1, 1, 0.694118)
 tint_progress = Color(1, 1, 1, 0.560784)
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_right = -41.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="Control/VBoxContainer"]
 texture_filter = 1
-offset_left = 27.0
-offset_top = 4.0
-offset_right = 490.0
-offset_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_b1lf8")
 theme_override_font_sizes/font_size = 50
@@ -49,16 +62,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="RecordLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b1lf8")
+text = "Record : "
+
+[node name="Record" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b1lf8")
+text = "0"
+
 [node name="Btn_left" type="TouchScreenButton" parent="."]
 modulate = Color(0.447136, 0.207344, 0.287458, 1)
-position = Vector2(2, 569)
-scale = Vector2(4.0625, 2.51563)
+position = Vector2(2, 1)
+scale = Vector2(3.96875, 11.391)
 texture_normal = SubResource("GradientTexture2D_dhie7")
 action = "walk_left"
 
 [node name="Btn_left2" type="TouchScreenButton" parent="."]
 modulate = Color(0.447136, 0.207344, 0.287458, 1)
-position = Vector2(262, 586)
-scale = Vector2(3.71875, 2.25)
+position = Vector2(258, 0)
+scale = Vector2(3.78125, 11.4063)
 texture_normal = SubResource("GradientTexture2D_radol")
 action = "walk_right"
