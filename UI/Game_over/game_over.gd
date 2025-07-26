@@ -30,33 +30,55 @@ func record_update(score):
 
 # -------------------------- ELEMENTOS DE PRUEBAS ---------------------------------- # 
 	# !!ADVERTENCIA FUNCIÓN DE PRUEBAS!! #
-func record(score):
-	if Game.record !=0 :
+func record(score):							# PUNTAJE DEL JUGADOR
+	if Game.record !=0 :					# MIENTRAS EL RECORD NO SEA 'CERO'
 		if Game.score > Game.record:
 			Game.record = Game.score
-			guardar()		
-		if Game.score >= 1:
-			addNewPlayerPru("player_3")
+			guardar()						# GUARDAR EL NUEVO RECORD	
+		if Game.score >= 1:	
+			print("aqui!!!!")				
+			addNewPlayerPru("player_1")
 		else:
 			$Control/GameOverContainer.visible = true
-	else:
+			
+	elif Game.score != 0:
+		print("Record vacio!")
 		Game.record = score
-		$Control/GameOverContainer.visible = true
+		$Control/GameHighScore.visible = true
 		print(" --> : ",Game.record)
 		guardar()
+		addNewPlayerPru("panch0")
+	else : 
+		$Control/GameOverContainer.visible = true
 
 
 func addNewPlayerPru(typPlyr):	
-	var err = config_file.load("user://partida_guardada.cfg")
+	var err = config_file.load("user://partida_guardada.cfg")		# CAEGAR LOS ELEMENTOS DEL ARCHIVO
 	if err != OK:		# VERIFICA LA EXISTENICIA DEL ARCHIVO 
 		print("No se encuentra el archivo! : ",err)
+		#config_file.save("user://players.cfg")
+		return
 	else : 
-		var elmnts = config_file.get_sections()
-		print(elmnts.size())
-		if elmnts.size() == 1:
-			pass
-		'''
-		if elmnts.has(typPlyr):
+		'''config_file.set_value("Player","name","Panch0_pru")
+		config_file.set_value("Player","score","25")
+		config_file.save("user://partida_guardada.cfg")'''
+		
+		var elmnts = Array(config_file.get_sections())
+		#print(" -Sz-> : ",elmnts.size()," : ",elmnts.filter(func(i): return "player" in i.to_lower()))
+		
+		if elmnts.size() == 1:										# -- SIN JUGADORES -- #
+			$Control/GameHighScore.visible = true					# AGREGA EL NUEVO JUGADOR, ESPERANDO EL BOTON
+			Game.type_player = "Player_1"
+		#else:
+			# DEL ARCHIVO, TOMA LOS ELEMENTOS QUE CONTENGAN LA PALABRA "PLAYER"
+		var players = Array(config_file.get_sections()).filter(func(plyr): return "player" in plyr.to_lower())
+		print(players)
+		for i in players:
+			for j in config_file.get_section_keys(i):
+				var valor = config_file.get_value(i,"score")
+				print(" -x-> : ",valor)
+				
+		'''if elmnts.has(typPlyr):
 			var score = config_file.get_value(typPlyr,"score")
 			if Game.score > score:
 				$Control/GameHighScore.visible = true
@@ -71,8 +93,7 @@ func addNewPlayerPru(typPlyr):
 		print(config_file.get_sections())
 		'''
 		
-# ------------------------------------------------------------ # 
-
+# ------------------------------------------------------------------- # 
 
 # -- AGREGAR EL TOP 3 -- #
 func addNewPlayer(typPlyr):
@@ -81,7 +102,6 @@ func addNewPlayer(typPlyr):
 		print("No se encuentra el archivo! : ",err)
 	else : 
 		var elmnts = config_file.get_sections()
-		
 		if elmnts.has(typPlyr):
 			var score = config_file.get_value(typPlyr,"score")
 			if Game.score > score:
@@ -95,15 +115,7 @@ func addNewPlayer(typPlyr):
 			#config_file.set_value("player_1","name",)	
 				
 		print(config_file.get_sections())
-		
-func getValuesPlayer(player):
-	#for values in config_file.get_section_keys(layer):
-	pass	
-			
-func pruFile():
-	var error = config_file.load("user://partida_guardada.cfg")
-	#print(error)
-		
+				
 # --- ESTA FUNCIÓN SE AGREGARA EN EL MENU PRINCIPAL PARA OBTENER LOS DATOS --- 
 func cargar():
 	config_file = ConfigFile.new()
@@ -115,15 +127,14 @@ func cargar():
 		
 # GUARDA EL NUEVO RECORD OBTENIDO POR EL USUARIO
 func guardar():
-	config_file = ConfigFile.new()
+	#config_file = ConfigFile.new()
 	#config_file.set_value("record","usser","GioXd")
 	config_file.set_value("record","record",Game.record)
-	#config_file.
 	config_file.save("user://partida_guardada.cfg")
 	
-# -- SEÑALES DE PRUEBA BOTONES -- #
+# ------------------------------------------ SEÑALES DE PRUEBA BOTONES ----------------------------------------- #
 
-# VERIFICAR Y AÑADIR EL NUEVO JUGADOR 
+#  -- VERIFICAR Y AÑADIR EL NUEVO JUGADOR -- 
 func _on_texture_button_pressed():
 	var nameUsr = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit.text
 	if $Control/GameHighScore.visible == true:
@@ -133,7 +144,6 @@ func _on_texture_button_pressed():
 			config_file.save("user://partida_guardada.cfg")		
 	Game.new_game.emit()
 		
-	
 	'''if $Control/GameHighScore.visible == true:
 		var vlueInpt = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit
 		# GUARDAR JUGADOR Y RE-COMENZAR JUEGO
