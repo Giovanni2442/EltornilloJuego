@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dqxlxitw4bjfx" path="res://level/assets/Sprite-0002-Sheet.png" id="1_27yls"]
 [ext_resource type="Script" uid="uid://8sdbdn7ccqn1" path="res://main/main_menu.gd" id="1_adkci"]
-[ext_resource type="Texture2D" uid="uid://b5rc6kamo76um" path="res://level/assets/ChatGPT Image Jul 12, 2025, 10_48_09 AM.png" id="1_uqs8y"]
 [ext_resource type="Texture2D" uid="uid://5jlyj0781403" path="res://level/assets/Player_menu.png" id="2_2sxo6"]
+[ext_resource type="Texture2D" uid="uid://bpe25pnbvd0vi" path="res://main/images/Img_Main_Menu.png" id="2_adkci"]
 [ext_resource type="Script" uid="uid://dokjmx6n3fdvs" path="res://main/logo_sprite.gd" id="4_5uabn"]
 [ext_resource type="AudioStream" uid="uid://6swh67ftmyk" path="res://main/audio/slow-2021-10-19_-_Funny_Bit_-_www.FesliyanStudios.com.mp3" id="5_iq6h4"]
 [ext_resource type="FontFile" uid="uid://d24lcfiwk4mfc" path="res://UI/fonts/Minecraft.ttf" id="6_d0b4o"]
@@ -45,15 +45,15 @@ region = Rect2(129, 25, 103, 77)
 script = ExtResource("1_adkci")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1667.0
-offset_bottom = 2433.0
+offset_right = 1642.0
+offset_bottom = 2650.0
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_uqs8y")
+texture = ExtResource("2_adkci")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 501.0
+offset_right = 495.0
 offset_bottom = 729.0
 color = Color(0, 0, 0.121569, 0.0941176)
 

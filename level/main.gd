@@ -38,7 +38,7 @@ func game_over(health):
 		$CoinTimer.stop()			
 		$HealthTimer.stop()
 		#gameOver.record_update(Game.score)			# FUNCION ORIGINAL
-		gameOver.record(Game.score)				# !!FUNCIÓN DE PRUEBAS!!
+		gameOver.record(Game.score)				# !!FUNCIÓN DE PRUEBAS!! Game.score -> SOCRE PLAYER
 		#$HUD.record_update(Game.score)			# ALMACENA LA NUEVA PUNTUACIÓN
 		add_child(gameOver)		
 		$MusicDeadPlayer.play()

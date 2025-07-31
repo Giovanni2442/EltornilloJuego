@@ -30,14 +30,16 @@ func record_update(score):
 
 # -------------------------- ELEMENTOS DE PRUEBAS ---------------------------------- # 
 	# !!ADVERTENCIA FUNCIÓN DE PRUEBAS!! #
-func record(score):							# PUNTAJE DEL JUGADOR
-	if Game.record !=0 :					# MIENTRAS EL RECORD NO SEA 'CERO'
+func record(score):									# PUNTAJE DEL JUGADOR
+	if Game.record !=0 :							# MIENTRAS EL RECORD NO SEA 'CERO'
 		if Game.score > Game.record:
-			Game.record = Game.score
-			guardar()						# GUARDAR EL NUEVO RECORD	
+			Game.record = Game.score				# ASIGNA A RECORD EL SCORE DEL JUGADOR PREVIO
+			guardar()								# GUARDAR EL NUEVO RECORD	
+			$Control/GameHighScore.visible = true 	# AGREGAR EL JUGADOR CON EL NUEVO PUNTAJE 
+			#return 
 		if Game.score >= 1:	
 			print("aqui!!!!")				
-			addNewPlayerPru("player_1")
+			addNewPlayerPru("player_1")				# *** COMPRUEBA SI REBASO A UN JUGADOR REGISTRADO *** #
 		else:
 			$Control/GameOverContainer.visible = true
 			
@@ -51,7 +53,7 @@ func record(score):							# PUNTAJE DEL JUGADOR
 	else : 
 		$Control/GameOverContainer.visible = true
 
-
+# ADD NEWPLAYER TO THE FILE 
 func addNewPlayerPru(typPlyr):	
 	var err = config_file.load("user://partida_guardada.cfg")		# CAEGAR LOS ELEMENTOS DEL ARCHIVO
 	if err != OK:		# VERIFICA LA EXISTENICIA DEL ARCHIVO 
@@ -69,14 +71,16 @@ func addNewPlayerPru(typPlyr):
 		if elmnts.size() == 1:										# -- SIN JUGADORES -- #
 			$Control/GameHighScore.visible = true					# AGREGA EL NUEVO JUGADOR, ESPERANDO EL BOTON
 			Game.type_player = "Player_1"
-		#else:
+			
+		else:
 			# DEL ARCHIVO, TOMA LOS ELEMENTOS QUE CONTENGAN LA PALABRA "PLAYER"
-		var players = Array(config_file.get_sections()).filter(func(plyr): return "player" in plyr.to_lower())
-		print(players)
-		for i in players:
-			for j in config_file.get_section_keys(i):
-				var valor = config_file.get_value(i,"score")
-				print(" -x-> : ",valor)
+			var players = Array(config_file.get_sections()).filter(func(plyr): return "player" in plyr.to_lower())
+			print(players)
+			for i in players:
+				print(i)	
+				for j in config_file.get_section_keys(i):
+					var valor = config_file.get_value(i,"score")
+					print(" -x-> : ",valor)
 				
 		'''if elmnts.has(typPlyr):
 			var score = config_file.get_value(typPlyr,"score")
