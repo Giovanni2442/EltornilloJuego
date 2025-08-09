@@ -7,6 +7,8 @@ signal main_menu
 
 #---PLAYER---
 var speed := 425
+var auxPlyr = []		# VARIABLE AUXILIAR
+var auxPlyrDict = {}
 
 #---ITEMS---#
 var score := 0

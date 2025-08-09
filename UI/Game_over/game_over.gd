@@ -67,11 +67,12 @@ func addNewPlayerPru(record_superado):
 		#config_file.save("user://players.cfg")
 		return
 	else : 
-		
-		
+	
 		var elmnts = Array(config_file.get_sections())			# NUMERO DE ELEMENTOS EN EL ARCHIVO
 		var new_player = "player_"
 		var players = Array(config_file.get_sections()).filter(func(plyr): return "player" in plyr.to_lower())
+		
+		#var auxPlyr = []
 		
 		print(" -LNG-> " , len(players))
 		print(" -SZ-> " , players.size())
@@ -83,8 +84,41 @@ func addNewPlayerPru(record_superado):
 		
 		# -- AGREGAR TOP 3 JUGADORES -- #
 		if players.size() != 3:
-			Game.type_player = new_player + str(players.size())
-			$Control/GameHighScore.visible = true 
+			#Game.type_player = new_player + str(players.size())
+			#$Control/GameHighScore.visible = true 
+			
+			var b1						# VARIABLE AUXILIAR
+			
+			for i in players:			# RECORRE LOS JUGADORES DEL ARREGLO		
+				print("xxxxxxx : ",i)
+				#print(" -Scre-> : ",Game.score)
+				# NOTA : COMIENZA EN '1' , YA QUE EL ELEMENTO '0' ES EL SCORE GLOBAL DEL JUEGO
+				
+				#for j in range(1,config_file.get_section_keys(i).size()): 
+				var valor = config_file.get_value(i,"score")
+				print(" -x-> : ",valor)
+				
+				if Game.score > valor:
+					#Game.auxPlyr.append(i)
+					#Game.auxPlyr.append(config_file.get_value(i,"name")) 
+					#Game.auxPlyr.append(config_file.get_value(i,"score"))
+					Game.auxPlyrDict[i] = { 'name' : config_file.get_values(i,"name"), 'score' : config_file.get_value(i,"score") }
+							
+					b1 = true
+					break
+						
+						#scrAux.append("")
+						#b1 = true
+						#break
+			if !b1:
+				Game.type_player = new_player + str(players.size())
+			else :
+				#var j=Game.auxPlyr.get(0)
+				for j in range(Game.auxPlyr.get(0),players) :
+					print(j)
+					Game.auxPlyrDict[j] = { 'name' : config_file.get_values(j,"name") }
+			
+			$Control/GameHighScore.visible = true 			
 			return
 			
 			'''if record_superado:
@@ -97,54 +131,8 @@ func addNewPlayerPru(record_superado):
 		else:
 			# --- VERIFICAR POCICIÓNAMIENTO --- #
 			#$Control/GameOverContainer.visible = true
-			#print("NO HAY CUPO XD")
-			for i in players:			# RECORRE LOS JUGADORES DEL ARREGLO		
-				print(i)
-				#print("-pEd0 -> : ",config_file.get_section_keys(i))	
-				for j in range(1,config_file.get_section_keys(i).size()):
-					var valor = config_file.get_value(i,"score")
-					print(" -x-> : ",valor)
-					#if Game.score > valor:
-					#	pass
+			print("NO HAY CUPO XD")
 			
-			
-			
-		'''
-		# REGISTRA EL USUARIO QUE SUPERO EL RECORD
-		if players.size() != 4:
-			if record_superado:
-				Game.type_player = "player_"+str(players.size()) 
-				
-			else:
-				
-				
-		else:
-			pass
-		#print(" -Sz-> : ",elmnts.size()," : ",elmnts.filter(func(i): return "player" in i.to_lower()))
-		
-		# -- PRIMER JUGADOR -- 
-		if elmnts.size() == 1:										# -- SIN JUGADORES -- #
-			$Control/GameHighScore.visible = true					# AGREGA EL NUEVO JUGADOR, ESPERANDO EL BOTON
-			Game.type_player = "Player_0"
-			
-		else:
-			# DEL ARCHIVO, TOMA LOS ELEMENTOS QUE CONTENGAN LA PALABRA "PLAYER"
-			#var players = Array(config_file.get_sections()).filter(func(plyr): return "player" in plyr.to_lower())
-			print(players.size())	
-			
-			# -- NUEVO JUGADOR --
-			Game.type_player = "player_"+str(players.size())
-			
-			#if players.size() != 4:			# VERIFICA SI EXISTEN 3 JUGADORES EN EL ARCHIVO
-			for i in players:			# RECORRE LOS JUGADORES DEL ARREGLO		
-				print(i)
-				#print("-pEd0 -> : ",config_file.get_section_keys(i))	
-				for j in range(1,config_file.get_section_keys(i).size()):
-					var valor = config_file.get_value(i,"score")
-					print(" -x-> : ",valor)
-					#if Game.score > valor:
-					#	pass
-		'''
 # ------------------------------------------------------------------- # 
 
 # -- AGREGAR EL TOP 3 -- #
@@ -186,8 +174,42 @@ func guardar():
 	
 # ------------------------------------------ SEÑALES DE PRUEBA BOTONES ----------------------------------------- #
 
+func savaPlayer(index,nombre,score):
+	config_file.set_value(index,"name",nombre)
+	config_file.set_value(index,"score",score)
+	config_file.save("user://partida_guardada.cfg")	
+
 #  -- VERIFICAR Y AÑADIR EL NUEVO JUGADOR -- 
-func _on_texture_button_pressed():
+func _on_texture_button_pressed():	
+	var nameUsr = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit.text
+	print(" -Dic-> : ",Game.auxPlyrDict)
+	
+	if Game.auxPlyr.size() != 0:
+		savaPlayer(Game.auxPlyr.get(0),nameUsr,Game.score)
+		
+		'''config_file.set_value(Game.auxPlyr.get(0),"name",nameUsr)
+		config_file.set_value(Game.auxPlyr.get(0),"score",Game.score)
+		config_file.save("user://partida_guardada.cfg")	'''
+	
+		if $Control/GameHighScore.visible == true:
+			if len(nameUsr) != 0:
+				savaPlayer(Game.type_player,Game.auxPlyr.get(1),Game.auxPlyr.get(2))	
+				
+				'''config_file.set_value(Game.type_player,"name",Game.auxPlyr.get(1))
+				config_file.set_value(Game.type_player,"score",Game.auxPlyr.get(2))
+				config_file.save("user://partida_guardada.cfg")'''
+				
+		Game.auxPlyr.clear()	
+		Game.new_game.emit()
+	else:
+		if $Control/GameHighScore.visible == true:
+			if len(nameUsr) != 0:	
+				config_file.set_value(Game.type_player,"name",nameUsr)
+				config_file.set_value(Game.type_player,"score",Game.score)
+				config_file.save("user://partida_guardada.cfg")
+		Game.new_game.emit()
+	
+	'''
 	var nameUsr = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit.text
 	if $Control/GameHighScore.visible == true:
 		if len(nameUsr) != 0:	
@@ -195,21 +217,11 @@ func _on_texture_button_pressed():
 			config_file.set_value(Game.type_player,"score",Game.score)
 			config_file.save("user://partida_guardada.cfg")		
 	Game.new_game.emit()
-		
-	'''if $Control/GameHighScore.visible == true:
-		var vlueInpt = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit
-		# GUARDAR JUGADOR Y RE-COMENZAR JUEGO
-		if len(vlueInpt.text) != 0:			#VERIFICA SI EL CAMPO ESTA LLENO
-			print(" --> : ",vlInpt.text)
-			
-			#config_file.set_value(vlueInpt.text,"name","Player_void")
-			#config_file.set_value(,"score",0)
-		else : 
-			Game.damage
-			print("vacio el ped0")
-		
-		#config_fil
 	'''
+
+	
+	
+	
 
 # ------------------------------- #
 func _ready():
