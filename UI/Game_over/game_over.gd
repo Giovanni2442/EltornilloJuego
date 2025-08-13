@@ -34,13 +34,14 @@ func record_update(score):
 func record(score):									# PUNTAJE DEL JUGADOR
 	# YA EXISTE POR LO MENOS UN JUGADOR
 	if Game.record !=0 :							# MIENTRAS EL RECORD NO SEA 'CERO'
+		
 		# -- SUPERO EL RECORD!! --
-		if Game.score > Game.record:
+		'''if Game.score > Game.record:
 			Game.record = Game.score				# ASIGNA A RECORD EL SCORE DEL JUGADOR PREVIO
 			guardar()								# GUARDAR EL NUEVO RECORD	
 			$Control/GameHighScore.visible = true 	# AGREGAR EL JUGADOR CON EL NUEVO PUNTAJE 
 			addNewPlayerPru(true)
-			return
+			return'''
 		
 		# -- VERIFICAR SU POSICIÓN!! --
 		if Game.score >= 1:	
@@ -73,7 +74,7 @@ func addNewPlayerPru(record_superado):
 		var players = Array(config_file.get_sections()).filter(func(plyr): return "player" in plyr.to_lower())
 		
 		#var auxPlyr = []
-		
+		print(elmnts)
 		print(" -LNG-> " , len(players))
 		print(" -SZ-> " , players.size())
 		
@@ -83,41 +84,30 @@ func addNewPlayerPru(record_superado):
 			return
 		
 		# -- AGREGAR TOP 3 JUGADORES -- #
-		if players.size() != 3:
-			#Game.type_player = new_player + str(players.size())
-			#$Control/GameHighScore.visible = true 
+		if players.size() != 3:			
+			var b1 = false						# VARIABLE AUXILIAR
 			
-			var b1						# VARIABLE AUXILIAR
-			
+			# -- RECORRE EL NUEMRO DE JUGADORES -- # 
 			for i in players:			# RECORRE LOS JUGADORES DEL ARREGLO		
 				print("xxxxxxx : ",i)
-				#print(" -Scre-> : ",Game.score)
-				# NOTA : COMIENZA EN '1' , YA QUE EL ELEMENTO '0' ES EL SCORE GLOBAL DEL JUEGO
-				
-				#for j in range(1,config_file.get_section_keys(i).size()): 
 				var valor = config_file.get_value(i,"score")
 				print(" -x-> : ",valor)
 				
-				if Game.score > valor:
-					#Game.auxPlyr.append(i)
-					#Game.auxPlyr.append(config_file.get_value(i,"name")) 
-					#Game.auxPlyr.append(config_file.get_value(i,"score"))
-					Game.auxPlyrDict[i] = { 'name' : config_file.get_values(i,"name"), 'score' : config_file.get_value(i,"score") }
-							
-					b1 = true
-					break
-						
-						#scrAux.append("")
-						#b1 = true
-						#break
-			if !b1:
-				Game.type_player = new_player + str(players.size())
-			else :
-				#var j=Game.auxPlyr.get(0)
-				for j in range(Game.auxPlyr.get(0),players) :
-					print(j)
-					Game.auxPlyrDict[j] = { 'name' : config_file.get_values(j,"name") }
-			
+				if b1:
+					Game.auxPlyrDict[i] = {
+						'name' : config_file.get_values(i,"name"),
+						'score' : config_file.get_value(i,"score")
+						 }
+				else:
+					if Game.score > valor:	
+						print("Se cumple!")
+						b1 = true
+				
+			#if Game.auxPlyrDict.size() == 0 :
+			#	Game.type_player = new_player + str(players.size())
+			#else :
+			print(" -- > : ",Game.auxPlyrDict)			
+				
 			$Control/GameHighScore.visible = true 			
 			return
 			
@@ -181,23 +171,23 @@ func savaPlayer(index,nombre,score):
 
 #  -- VERIFICAR Y AÑADIR EL NUEVO JUGADOR -- 
 func _on_texture_button_pressed():	
-	var nameUsr = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit.text
-	print(" -Dic-> : ",Game.auxPlyrDict)
-	
+	#var nameUsr = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit.text
+	print(Game.auxPlyrDict)
+	'''
 	if Game.auxPlyr.size() != 0:
 		savaPlayer(Game.auxPlyr.get(0),nameUsr,Game.score)
 		
-		'''config_file.set_value(Game.auxPlyr.get(0),"name",nameUsr)
+		config_file.set_value(Game.auxPlyr.get(0),"name",nameUsr)
 		config_file.set_value(Game.auxPlyr.get(0),"score",Game.score)
-		config_file.save("user://partida_guardada.cfg")	'''
+		config_file.save("user://partida_guardada.cfg")
 	
 		if $Control/GameHighScore.visible == true:
 			if len(nameUsr) != 0:
 				savaPlayer(Game.type_player,Game.auxPlyr.get(1),Game.auxPlyr.get(2))	
 				
-				'''config_file.set_value(Game.type_player,"name",Game.auxPlyr.get(1))
+				config_file.set_value(Game.type_player,"name",Game.auxPlyr.get(1))
 				config_file.set_value(Game.type_player,"score",Game.auxPlyr.get(2))
-				config_file.save("user://partida_guardada.cfg")'''
+				config_file.save("user://partida_guardada.cfg")
 				
 		Game.auxPlyr.clear()	
 		Game.new_game.emit()
@@ -208,8 +198,8 @@ func _on_texture_button_pressed():
 				config_file.set_value(Game.type_player,"score",Game.score)
 				config_file.save("user://partida_guardada.cfg")
 		Game.new_game.emit()
-	
 	'''
+	
 	var nameUsr = $Control/GameHighScore/MessageLabel/HBoxContainer/LineEdit.text
 	if $Control/GameHighScore.visible == true:
 		if len(nameUsr) != 0:	
@@ -217,7 +207,8 @@ func _on_texture_button_pressed():
 			config_file.set_value(Game.type_player,"score",Game.score)
 			config_file.save("user://partida_guardada.cfg")		
 	Game.new_game.emit()
-	'''
+
+
 
 	
 	
